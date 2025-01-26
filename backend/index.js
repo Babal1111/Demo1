@@ -33,7 +33,7 @@ MongoClient.connect(DB_URI)
     console.error("MongoDB connection error:", err);
   });
 app.get("/", (req, res) => {
-  res.send("API is working.on vercel!!!!");
+  res.send("API is working.on vercel!!!!!!");
 });
 
 
@@ -50,10 +50,11 @@ app.get("/questions", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+module.exports = app;
 
-app.listen(PORT_REST, () => {
-  console.log(`Server running on port ${PORT_REST}`);
-});
+// app.listen(PORT_REST, () => {
+//   console.log(`Server running on port ${PORT_REST}`);
+// });
 
 
 // const express = require("express");
