@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box; 
+  }
+  
+  .questions-container {
+    display: flex;
+    justify-content: space-between; 
+    padding: 20px;
+    background-size: cover; 
+    background-position: center; 
+  }
+  
+  .mcqs-section, .others-section {
+    width:47%; 
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+  
+  h2 {
+    margin-bottom: 10px; 
+  }
+  
+  ul {
+    list-style-type: none; 
+    padding: 0; 
+  }
+  
+  li {
+    margin-bottom: 8px;
+  }
