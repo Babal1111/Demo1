@@ -51,5 +51,62 @@
 // app.listen(PORT_REST, () => {
 //   console.log(`Server running on port ${PORT_REST}`);
 // });
+const express = require("express");
+const { MongoClient } = require("mongodb");
+const cors = require("cors");
+
+const app = express();
+
+// CORS Configuration: Allow requests from your frontend domain
+const corsOptions = {
+  origin: "https://demo1-frontend.vercel.app", // Frontend URL
+  methods: "GET, POST, PUT, DELETE",          // Allowed methods
+  allowedHeaders: "Content-Type, Authorization", // Allowed headers
+};
+
+// Use the CORS middleware with the options
+app.use(cors(corsOptions));
+
+app.use(express.json());
+
+const DB_URI = process.env.DB_URI; // Use environment variable for sensitive data
+const DB_NAME = "questions";
+const COLLECTION_NAME = "questionare";
+
+let db;
+
+// MongoDB connection
+MongoClient.connect(DB_URI)
+  .then((client) => {
+    db = client.db(DB_NAME);
+    console.log(`Connected to MongoDB database: ${DB_NAME}`);
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
+
+// Root route
+app.get("/", (req, res) => {
+  res.send("Hello, Vercel is working!");
+});
+
+// Fetch questions route with query parameter
+app.get("/questions", async (req, res) => {
+  try {
+    const { query } = req.query || {};
+    const questions = await db
+      .collection(COLLECTION_NAME)
+      .find({ title: { $regex: query || "", $options: "i" } })
+      .limit(20)
+      .toArray();
+    res.json(questions);
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Export the app for Vercel
+module.exports = app;
 
 
