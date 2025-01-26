@@ -22,6 +22,10 @@ MongoClient.connect(DB_URI)
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
+app.get("/", (req, res) => {
+  res.send("API is working.on vercel!");
+});
+
 
 app.get("/questions", async (req, res) => {
   try {
