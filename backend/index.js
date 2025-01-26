@@ -59,9 +59,10 @@ const app = express();
 
 // CORS Configuration: Allow requests from your frontend domain
 const corsOptions = {
-  origin: "https://demo1-frontend.vercel.app", // Frontend URL
-  methods: "GET, POST, PUT, DELETE",          // Allowed methods
-  allowedHeaders: "Content-Type, Authorization", // Allowed headers
+  origin: ["https://demo1-frontend.vercel.app"], // Frontend URL
+  methods: ["GET, POST"],          // Allowed methods
+  allowedHeaders: ["Content-Type, Authorization"],
+  credentials:true
 };
 
 // Use the CORS middleware with the options
@@ -69,7 +70,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-const DB_URI = process.env.DB_URI; // Use environment variable for sensitive data
+const DB_URI = "mongodb+srv://babalpreet102:Babal1111@questions.upcav.mongodb.net/?retryWrites=true&w=majority&appName=questions"; // Use environment variable for sensitive data
 const DB_NAME = "questions";
 const COLLECTION_NAME = "questionare";
 
