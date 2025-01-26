@@ -5,9 +5,9 @@ const cors = require('cors');
 const app = express();
 // app.use(cors());
 const corsOptions = {
-    origin: "https://demo1-frontend.vercel.app/", // Frontend URL
-    methods: "GET,POST", // Specify allowed methods if needed
-    allowedHeaders: "Content-Type,Authorization" // Specify allowed headers if needed
+    origin: ["https://demo1-frontend.vercel.app/"], // Frontend URL
+    methods: ["GET,POST"], // Specify allowed methods if needed
+    credentials:true // Specify allowed headers if needed
   };
   
   app.use(cors(corsOptions));
