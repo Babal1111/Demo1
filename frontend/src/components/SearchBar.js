@@ -15,7 +15,7 @@ function SearchBar() {
   const searchQuestions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://demo1-f2up.vercel.app/questions`, {
+      const response = await axios.get(`https://demo1-back.vercel.app/questions`, {
         params: { query },
       });
       setQuestions(response.data);
